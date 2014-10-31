@@ -62,7 +62,7 @@ namespace ZTn.BNet.D3.Example
             Console.WriteLine("Downloading {0}", "hands");
             var hands = GetFullItem(hero.Items.Hands);
             Console.WriteLine("Downloading {0}", "head");
-            var head = GetFullItem(hero.Items.Hands);
+            var head = GetFullItem(hero.Items.Head);
             Console.WriteLine("Downloading {0}", "leftFinger");
             var leftFinger = GetFullItem(hero.Items.LeftFinger);
             Console.WriteLine("Downloading {0}", "legs");
