@@ -37,6 +37,14 @@ namespace ZTn.BNet.D3.DataProviders
             Debug.WriteLine("FetchData({0},...): {1}", url, "Start");
 
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+            IWebProxy proxy = httpWebRequest.Proxy;
+            if (proxy != null)
+            {
+                string proxyuri = proxy.GetProxy(httpWebRequest.RequestUri).ToString();
+                httpWebRequest.UseDefaultCredentials = true;
+                httpWebRequest.Proxy = new WebProxy(proxyuri, false);
+                httpWebRequest.Proxy.Credentials = System.Net.CredentialCache.DefaultCredentials;
+            }
 
             httpWebRequest.BeginGetResponse(OnFetchDataCompleted, new RequestState(httpWebRequest, onSuccess, onFailure, remainingTries));
         }
